@@ -7,6 +7,7 @@ INPUT_FILENAME = "input.txt"
 OUTPUT_FILENAME = "output.txt"
 READ_MODE = "r"
 WRITE_MODE = "w"
+END_LINE = "\n"
 
 
 def cmp_to_key(obj_cmp):
@@ -177,7 +178,7 @@ def solve(points, queries):
 def print_answer(stream, result):
     """Prints answer to the output stream."""
     for i in range(len(result)):
-        stream.writelines(result[i] + "\n")
+        stream.writelines(result[i] + END_LINE)
 
 fin = open(INPUT_FILENAME, READ_MODE)
 data = read_data(fin)
