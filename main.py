@@ -39,7 +39,7 @@ def cmp_to_key(obj_cmp):
 
 
 class Point:
-    """Represents a point on the (x,y) plane."""
+    """Represent a point on the (x,y) plane."""
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -50,7 +50,7 @@ class Point:
 
     def is_inside_segment(self, segment_start_point, segment_finish_point):
         """
-        Checks if point is inside segment,
+        Check if point is inside segment,
         assuming that all 3 points lay on the same straight.
         """
         return segment_start_point.x < self.x < segment_finish_point.x or \
@@ -63,7 +63,7 @@ class Point:
     @staticmethod
     def get_rotation(a, b, c):
         """
-        Gets rotation level by 3 points.
+        Get rotation level by 3 points.
         If result is 0 - points lay on the same line,
         if result is > 0 - left rotation,
         if result is < 0 - right rotation.
@@ -72,7 +72,7 @@ class Point:
 
 
 class Shape:
-    """Represents a convex hull."""
+    """Represent a convex hull."""
     def __init__(self, points):
         """Initialize shape with array of points."""
         self.points = points
@@ -90,13 +90,13 @@ class Shape:
 
     def is_point_inside(self, point):
         """
-        Checks whether point lays inside the convex hull.
-        Returns the position of the point: either INSIDE, OUTSIDE or BORDER.
+        Check whether point lays inside the convex hull.
+        Return the position of the point: either INSIDE, OUTSIDE or BORDER.
         """
 
         # At first check if point lays inside the space,
         # limited by P_0-P_1 and P_0-P_N lines,
-        # so the point will might lay inside the shape.
+        # so the point might lay inside the shape.
         # Also, checking if the point lays on the border of the shape.
         rotation_level_start_line = Point.get_rotation(
             self.points[0], self.points[1], point)
@@ -113,7 +113,7 @@ class Shape:
             return OUTSIDE
 
         # Using binary search find the smallest gap,
-        # so the point might lay inside the space,
+        # so the point will lay inside the space,
         # limited by P_0-left and P_0-right lines.
         left = 1
         right = len(self.points) - 1
@@ -145,8 +145,8 @@ class Shape:
 
 def read_points(stream):
     """
-    Reads points from the input stream.
-    Returns array of points.
+    Read points from the input stream.
+    Return array of points.
     """
     points_count = int(stream.readline())
     points = []
@@ -157,14 +157,14 @@ def read_points(stream):
 
 
 def read_data(stream):
-    """Reads points of the shape and queries."""
+    """Read points of the shape and queries."""
     return read_points(stream), read_points(stream)
 
 
 def solve(points, queries):
     """
-    Solves the problem.
-    For each query returns if point is inside, outside or on border.
+    Solve the problem.
+    For each query return if point is inside, outside or on border.
     """
     shape = Shape(points)
     shape.sort_points()
@@ -176,7 +176,7 @@ def solve(points, queries):
 
 
 def print_answer(stream, result):
-    """Prints answer to the output stream."""
+    """Print answer to the output stream."""
     for i in range(len(result)):
         stream.writelines(result[i] + END_LINE)
 
