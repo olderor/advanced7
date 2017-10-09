@@ -79,7 +79,7 @@ class Shape:
 
     def sort_points(self):
         """
-        Sort points in counterclockwise order
+        Sort points in clockwise order
         starting from first point in the array.
         """
         base = self.points[0]
